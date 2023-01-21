@@ -1,11 +1,5 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import "../assets/styles/Main.scss";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
-import {buttonURL, frontEndURL, backendURL} from "../utils";
-import { Container } from "react-bootstrap";
+import React, { useState, useEffect } from 'react';
+import "../assets/styles/Login.scss";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -15,7 +9,7 @@ const Login = () => {
   
     useEffect(() => {
       if (localStorage.getItem('token') !== null) {
-        window.location.replace(frontEndURL);
+        window.location.replace(process.env.REACT_APP_FRONTEND_URL);
       } else {
         setLoading(false);
       }
@@ -29,7 +23,7 @@ const Login = () => {
         password: password
       };
   
-      fetch(backendURL+'dj-rest-auth/login/', {
+      fetch(process.env.REACT_APP_BACKEND_URL+'dj-rest-auth/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -42,7 +36,7 @@ const Login = () => {
           if (data.key) {
             localStorage.clear();
             localStorage.setItem('token', data.key);
-            window.location.replace(frontEndURL);
+            window.location.replace(process.env.REACT_APP_FRONTEND_URL);
           } else {
             setEmail('');
             setPassword('');

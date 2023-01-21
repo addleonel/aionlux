@@ -100,19 +100,19 @@ const Header = () => {
         <ul id="nav-bar__responsive-list-id" className="nav-bar__responsive-list" onClick={ enableMenu }>
           <li className="nav-bar__responsive-li" ><Link id="about-res"  onClick={ disableMenu } className="nav-bar__responsive-item" to="/about/">Sobre Nosotros</Link></li>
           <li className="nav-bar__responsive-li" ><Link id="contact-res" onClick={ disableMenu }  className="nav-bar__responsive-item" to="/contact/">Contacto</Link></li>
-          <li className="nav-bar__responsive-li" ><Link id="products-res"  onClick={ disableMenu } className="nav-bar__responsive-item" to="/products/">Avances</Link></li>
+          <li className="nav-bar__responsive-li" ><Link id="products-res"  onClick={ disableMenu } className="nav-bar__responsive-item" to="/begin/">Avances</Link></li>
           <hr/>
           {isAuth === true ? (
             <li className="nav-bar__responsive-li" >
-              <Link className="nav-bar__responsive-item" to='/logout/'>Cerrar Sesión</Link>
+              <Link className="nav-bar__responsive-item" onClick={ disableMenu } to='/logout/'>Cerrar Sesión</Link>
             </li>
             ) : (
             <Fragment>
               <li className="nav-bar__responsive-li" >
-                <Link className="nav-bar__responsive-item" to='/login/'>Iniciar sesión</Link>
+                <Link className="nav-bar__responsive-item" onClick={ disableMenu } to='/login/'>Iniciar sesión</Link>
               </li>
               <li className="nav-bar__responsive-li" >
-                <Link className="nav-bar__responsive-item" to='/signup/'>Registrase</Link>
+                <Link className="nav-bar__responsive-item" onClick={ disableMenu } to='/signup/'>Registrase</Link>
               </li>
             </Fragment>
           )}

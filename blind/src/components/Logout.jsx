@@ -1,12 +1,11 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { backendURL, frontEndURL } from '../utils';
+import React, { useState, useEffect } from 'react';
 
 const Logout = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem('token') == null) {
-      window.location.replace(frontEndURL+'login/');
+      window.location.replace(process.env.REACT_APP_FRONTEND_URL+'login/');
     } else {
       setLoading(false);
     }
@@ -15,7 +14,7 @@ const Logout = () => {
   const handleLogout = e => {
     e.preventDefault();
 
-    fetch(backendURL+ 'dj-rest-auth/logout/', {
+    fetch(process.env.REACT_APP_BACKEND_URL+ 'dj-rest-auth/logout/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +25,7 @@ const Logout = () => {
       .then(data => {
         console.log(data);
         localStorage.clear();
-        window.location.replace(frontEndURL);
+        window.location.replace(process.env.REACT_APP_FRONTEND_URL);
       });
   };
 

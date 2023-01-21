@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {buttonURL, frontEndURL, backendURL} from "../utils";
+import "../assets/styles/Login.scss";
+
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
@@ -9,7 +10,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (localStorage.getItem('token') !== null) {
-      window.location.replace(frontEndURL);
+      window.location.replace(process.env.REACT_APP_FRONTEND_URL);
     } else {
       setLoading(false);
     }
@@ -24,7 +25,7 @@ const Signup = () => {
       password2: password2
     };
 
-    fetch(backendURL + 'dj-rest-auth/registration/', {
+    fetch(process.env.REACT_APP_BACKEND_URL + 'dj-rest-auth/registration/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -36,7 +37,7 @@ const Signup = () => {
         if (data.key) {
           localStorage.clear();
           localStorage.setItem('token', data.key);
-          window.location.replace(frontEndURL);
+          window.location.replace(process.env.REACT_APP_FRONTEND_URL);
         } else {
           setEmail('');
           setPassword1('');

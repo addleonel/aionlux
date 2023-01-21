@@ -1,7 +1,4 @@
 
-const frontEndURL = "http://localhost:3000/";
-const backendURL = "http://127.0.0.1:8000/";
-
 const drawRect = (detections, ctx) =>{
     // Loop through each prediction
     detections.forEach(prediction => {
@@ -111,8 +108,6 @@ const drawHand = (predictions, ctx) => {
 };
 
 export{ 
-    frontEndURL,
-    backendURL,
     drawRect,
     drawHand,
 }; 

@@ -3,16 +3,15 @@ import { Container} from "react-bootstrap";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "../assets/styles/Main.scss";
 import ProductItem from "./ProductItem";
-import { HashLink } from "react-router-hash-link";
-import {results
-} from "../resultList.js";
+// import { HashLink } from "react-router-hash-link";
+// import {results
+// } from "../resultList.js";
 import axios from "axios";
-import { backendURL } from "../utils";
 
 const Products = () => {
     const [productList, setProductList] = useState([]);
     useEffect(()=>{
-		axios.get(backendURL+ 'api/products/')
+		axios.get(process.env.REACT_APP_BACKEND_URL + 'api/products/')
 			.then((res) => {
 				console.log(res.data);
 				setProductList(res.data);

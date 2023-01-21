@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from "react";
 import "../assets/styles/Main.scss";
-import {backendURL} from "../utils.js";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from "axios";
@@ -19,7 +18,7 @@ const ProductItem= (props) => {
     }, []);
 
     const makeLike = () => {
-        axios.get(backendURL+'api/products/' + props.id + '/like/')
+        axios.get(process.env.REACT_APP_BACKEND_URL +'api/products/' + props.id + '/like/')
             .then(res => {
                 console.log(res.data);
                 if (res.data.liked) {
