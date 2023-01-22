@@ -63,16 +63,16 @@ const Header = () => {
     <React.Fragment>
       <nav id="navbarroot-id" className="navbarroot">
         <Container fluid="xxl" className="nav-bar"> 
-            <Link className="nav-bar__logo" to="/">
+            <Link className="nav-bar__logo" to={isAuth ? '/begin/':'/'}>
               <img className="nav-bar__logo-image" src="https://raw.githubusercontent.com/addleonel/aionlux/main/redocs/logo5.png" alt=""/>
-              <span className="nav-bar__logo-text">aionlux</span>
+              <span className="nav-bar__logo-text">Ailook</span>
             </Link>
             <Link className="nav-bar__button-item nav-bar__buttons-item--contact nav-bar__buttons-item--contact-responsive" to="/contact/">Contactar</Link>
             <div className="nav-bar__display" id="nav-bar__display-id" onClick={ displayResponsive }>
                 <img className="nav-bar__display-icon" src="https://raw.githubusercontent.com/addleonel/ghcenter/59ef2cad24ca811449366d46ee576a8100de17a8/homewc/src/assets/static/icons/bars.svg" alt=""/> 
             </div>
             <div className="nav-bar__buttons">
-              <Link className="nav-bar__buttons-item nav-bar__buttons-item--basic"  to="/begin/">Avances</Link>                                                                                                  
+              <Link className="nav-bar__buttons-item nav-bar__buttons-item--basic"  to=''></Link>                                                                                                  
               {isAuth === true ? (
                 <Fragment>
                   <Dropdown>
@@ -100,7 +100,6 @@ const Header = () => {
         <ul id="nav-bar__responsive-list-id" className="nav-bar__responsive-list" onClick={ enableMenu }>
           <li className="nav-bar__responsive-li" ><Link id="about-res"  onClick={ disableMenu } className="nav-bar__responsive-item" to="/about/">Sobre Nosotros</Link></li>
           <li className="nav-bar__responsive-li" ><Link id="contact-res" onClick={ disableMenu }  className="nav-bar__responsive-item" to="/contact/">Contacto</Link></li>
-          <li className="nav-bar__responsive-li" ><Link id="products-res"  onClick={ disableMenu } className="nav-bar__responsive-item" to="/begin/">Avances</Link></li>
           <hr/>
           {isAuth === true ? (
             <li className="nav-bar__responsive-li" >

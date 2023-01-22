@@ -29,27 +29,3 @@ class ProductListAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class PostLikeAPIToggle(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
-
-    def get(self, request, slug=None, format=None, *args, **kwargs):
-        obj = get_object_or_404(Product, id=kwargs['pk'])
-        user = self.request.user
-        updated = False
-        liked = False
-        if user.is_authenticated:
-            if user in obj.likes.all():
-                liked = False
-                obj.likes.remove(user)
-            else:
-                liked = True
-                obj.likes.add(user)
-            updated = True
-        
-        data = {
-            'updated': updated,
-            'liked': liked
-        }
-        return Response(data)

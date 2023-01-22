@@ -37,7 +37,7 @@ const Signup = () => {
         if (data.key) {
           localStorage.clear();
           localStorage.setItem('token', data.key);
-          window.location.replace(process.env.REACT_APP_FRONTEND_URL);
+          window.location.replace(process.env.REACT_APP_FRONTEND_URL + 'begin/');
         } else {
           setEmail('');
           setPassword1('');

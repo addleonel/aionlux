@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 // import * as tf from "@tensorflow/tfjs";
 import * as cocossd from "@tensorflow-models/coco-ssd";
 import Webcam from "react-webcam";
@@ -7,6 +7,13 @@ import "../assets/styles/Recognition.scss";
 
 
 function Recognition() {
+  const [isAuth, setIsAuth] = useState(false);
+    useEffect(() => {
+        if (localStorage.getItem('token') !== null) {
+        setIsAuth(true);
+        }
+    }, []);
+
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -58,22 +65,31 @@ function Recognition() {
   useEffect(()=>{runCoco()},[]);
 
   return (
-    <div className="cam-container">
-      <header className="webcam-header">
-        <Webcam
-          ref={webcamRef}
-          muted={true}
-          videoConstraints={videoConstraints}
-          className="webcam"
-        />
+    <React.Fragment>
+    {
+      isAuth ? (
+        <div className="cam-container">
+        <header className="webcam-header">
+          <Webcam
+            ref={webcamRef}
+            muted={true}
+            videoConstraints={videoConstraints}
+            className="webcam"
+          />
 
-        <canvas
-          ref={canvasRef}
-          className="webcam-canvas"
-        />
-      </header>
-    </div>
+          <canvas
+            ref={canvasRef}
+            className="webcam-canvas"
+          />
+        </header>
+      </div>
+      ): (
+       <div></div> 
+      )
+    }
+    </React.Fragment>  
   );
+
 }
 
 export default Recognition;

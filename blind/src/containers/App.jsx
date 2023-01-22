@@ -30,8 +30,8 @@ const App = ()  =>{
                     <Route path="/login/" element={<Login/>} />
                     <Route path="/signup/" element={<Signup/>} />
                     <Route path="/logout/" element={<Logout/>} />
-                    <Route path="/re/" element={<Recognition/>} />
-                    <Route path="/gts/" element={<Gestures/>} />
+                    <Route path="/recognition/" element={<Recognition/>} />
+                    <Route path="/gestures/" element={<Gestures/>} />
                     <Route path="/begin/" element={<Products/>} />
                 </Routes>
             </div>

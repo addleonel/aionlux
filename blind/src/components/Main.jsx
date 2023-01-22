@@ -7,43 +7,13 @@ import "../assets/styles/Main.scss";
 // import { HashLink } from "react-router-hash-link";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// products
-import ProductItem from "./ProductItem";
-// import { results
-//  } from "../resultList.js";
-
 const Main = () => {
-	const [productList, setProductList] = useState([]);
-
-	useEffect(()=>{
-		axios.get(process.env.REACT_APP_BACKEND_URL + 'api/products/')
-			.then((res) => {
-				console.log(res.data);
-				setProductList(res.data);
-			})
-			.catch(err => {
-				console.erro(err);
-			})
-		
-	}, [])
-
-	const resultList = productList.slice(0, 9).map((link) =>{
-		return( 
-			<React.Fragment>
-				<div>
-					<ProductItem 
-						id={link.id}
-						likes={link.likes.length}
-						key={link.id}
-						image={link.image}
-						in_="in-products"
-					/>
-				</div>
-			</React.Fragment>
-		)
-	});
-
-    
+	const [isAuth, setIsAuth] = useState(false);
+    useEffect(() => {
+        if (localStorage.getItem('token') !== null) {
+        setIsAuth(true);
+        }
+    }, []);
 	return (
 		<React.Fragment>
 			<section className="section-m section-1">
@@ -58,7 +28,7 @@ const Main = () => {
 							</p>
 							<button 
                                 className="principal__message-button"
-                                onClick={() => window.location.href = "/begin/"}
+                                onClick={() => window.location.href = '/signup/'}
                             >
 								Ver avances
                             </button>

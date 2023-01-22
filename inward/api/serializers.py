@@ -8,11 +8,8 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = [
             'id', 
-            'name', 
-            'price', 
-            'mark',
-            'description', 
-            'likes', 
+            'name',
+            'description',
             'image', 
             'created_at',
         ]
@@ -20,4 +17,4 @@ class ProductSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'is_staff')
+        fields = ('username', 'first_name', 'last_name')

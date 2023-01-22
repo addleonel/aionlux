@@ -23,27 +23,33 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 # Application definition
-
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 3rd Party Apps
-    'rest_framework', # new
-    'rest_framework.authtoken', # new
-    'dj_rest_auth', # new
-    'django.contrib.sites', # new
-    'allauth', # new
-    'allauth.account', # new
-    'allauth.socialaccount', # new
-    'dj_rest_auth.registration', # new
-    'corsheaders', # new
+]
+
+AILOOK_APPS = [
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',
 ]
+
+THIRD_PARTY_APPS = [
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+    'corsheaders',  
+]
+
+INSTALLED_APPS = DJANGO_APPS + AILOOK_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -165,7 +171,6 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'https://lobster-app-emcoq.ondigitalocean.app',
 ]
 
 
@@ -175,7 +180,7 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",    
     "allauth.account.auth_backends.AuthenticationBackend",
 )
-SITE_ID = 1 
+SITE_ID = 2 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_SESSION_REMEMBER = True

@@ -13,6 +13,12 @@ import ily from "../assets/static/gestures/ily.png";
 import "../assets/styles/Gestures.scss";
 
 function Gestures() {
+  const [isAuth, setIsAuth] = useState(false);
+    useEffect(() => {
+        if (localStorage.getItem('token') !== null) {
+        setIsAuth(true);
+        }
+    }, []);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const [emoji, setEmoji] = useState(null);
@@ -82,7 +88,10 @@ function Gestures() {
   useEffect(()=>{runHandpose()},[]);
 
   return (
-    <div className="cam-container">
+   <React.Fragment>
+    {
+      isAuth ? (
+        <div className="cam-container">
       <header className="webcam-header">
         <Webcam
           ref={webcamRef}
@@ -123,6 +132,12 @@ function Gestures() {
         )}
       </header>
     </div>
+      ): (
+        <div></div>
+      )
+    }
+   </React.Fragment> 
+    
   );
 }
 

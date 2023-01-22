@@ -4,11 +4,15 @@ import { Container} from "react-bootstrap";
 import "../assets/styles/Main.scss";
 import ProductItem from "./ProductItem";
 // import { HashLink } from "react-router-hash-link";
-// import {results
-// } from "../resultList.js";
 import axios from "axios";
 
 const Products = () => {
+    const [isAuth, setIsAuth] = useState(false);
+    useEffect(() => {
+        if (localStorage.getItem('token') !== null) {
+        setIsAuth(true);
+        }
+    }, []);
     const [productList, setProductList] = useState([]);
     useEffect(()=>{
 		axios.get(process.env.REACT_APP_BACKEND_URL + 'api/products/')
@@ -29,7 +33,6 @@ const Products = () => {
                     id={link.id}
                     key={link.id}
                     name={link.name}
-                    likes={link.likes.length}
                     image={link.image}
                     in_="in-products"
                 />
@@ -52,13 +55,20 @@ const Products = () => {
                 </div>
             </Container>
         </section> */}
+        {
+            isAuth === true ? (
+                <Container fluid="xxl" >
+                    <div className="products" style={{marginTop: "100px"}}>   
+                        {resultList}
+                    </div>
+                            
+                </Container>
+            ): (
+               <div></div>
+            )
+        }
 
-        <Container fluid="xxl" >
-            <div className="products" style={{marginTop: "100px"}}>   
-                {resultList}
-            </div>
-                     
-        </Container>
+        
     </React.Fragment>
   );
 }
